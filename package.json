@@ -1,0 +1,40 @@
+{
+  "name": "sistema-gestion-cafeteria",
+  "version": "1.0.0",
+  "description": "Sistema de gestión de inventario para cafetería con CRUD completo",
+  "main": "index.html",
+  "keywords": [
+    "cafeteria",
+    "inventario",
+    "crud",
+    "javascript",
+    "html",
+    "css",
+    "gestión",
+    "productos"
+  ],
+  "author": "ISAAC",
+  "license": "MIT",
+  "scripts": {
+    "start": "npx http-server . -p 8080 -o",
+    "dev": "npx live-server --port=8080 --open=/index.html",
+    "build": "echo 'Proyecto listo para producción'",
+    "test": "echo 'No hay tests configurados aún'"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.0",
+    "live-server": "^1.2.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "local"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead"
+  ],
+  "engines": {
+    "node": ">=12.0.0"
+  }
+}
