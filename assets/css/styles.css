@@ -1,8 +1,9 @@
 /* ==========================================================================
-   Base Styles - Kawaii Theme 🌸
+   Base Styles - Enhanced for Kawaii Pixel Art Theme 🌸🎮
    ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 * {
     margin: 0;
@@ -10,6 +11,7 @@
     box-sizing: border-box;
 }
 
+/* Default body styles (fallback) */
 body {
     font-family: 'Nunito', 'Comic Sans MS', cursive;
     background: linear-gradient(45deg, #FFE5F1 0%, #E5F3FF 25%, #F0E5FF 50%, #E5FFE5 75%, #FFF5E5 100%);
@@ -19,6 +21,24 @@ body {
     color: #6B4E7D;
     position: relative;
     overflow-x: hidden;
+}
+
+/* Enhanced styles when pixel mode is active */
+body.pixel-mode-active {
+    font-family: 'Press Start 2P', 'Courier New', monospace !important;
+    background: linear-gradient(45deg, 
+        #FFB3D9 0%,   /* kawaii-pink */
+        #D4B3FF 25%,  /* kawaii-purple */
+        #B3D9FF 50%,  /* kawaii-blue */
+        #B3FFD9 75%,  /* kawaii-green */
+        #FFF9B3 100%  /* kawaii-yellow */
+    );
+    background-size: 800% 800%;
+    animation: kawaii-gradient-shift 12s ease-in-out infinite;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -webkit-crisp-edges;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
 }
 
 /* Kawaii floating elements */
@@ -39,6 +59,14 @@ body::before {
 @keyframes gradientShift {
     0%, 100% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
+}
+
+/* Enhanced kawaii gradient animation for pixel mode */
+@keyframes kawaii-gradient-shift {
+    0%, 100% { background-position: 0% 50%; }
+    25% { background-position: 100% 0%; }
+    50% { background-position: 100% 100%; }
+    75% { background-position: 0% 100%; }
 }
 
 @keyframes floatElements {

@@ -3,16 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRUD Tienda-Cafetería</title>
+    <title>CRUD Tiend    <!-- Notification Area -->
+    <div id="notification" class="notification">
+        <span id="notificationMessage"></span>
+        <button onclick="hideNotification()">&times;</button>
+    </div>
+
+    <!-- Kawaii Welcome Progress -->
+    <div id="kawaiiWelcome" class="kawaii-progress-kawaii" 
+         style="position: fixed; bottom: 20px; left: 20px; right: 20px; z-index: 1000;"
+         data-text="Cargando Kawaii Mode">
+    </div>etería</title>
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="assets/css/components.css">
+    <link rel="stylesheet" href="assets/css/pixel-art.css">
+    <link rel="stylesheet" href="assets/css/kawaii-extras.css">
 </head>
-<body>
+<body class="pixel-mode-active">
+    <!-- Kawaii Corner Decorations -->
+    <div class="kawaii-corner-decoration top-left">🌸</div>
+    <div class="kawaii-corner-decoration top-right">💖</div>
+    <div class="kawaii-corner-decoration bottom-left">🎀</div>
+    <div class="kawaii-corner-decoration bottom-right">✨</div>
+    
+    <!-- Kawaii Decorative Elements -->
+    <div class="kawaii-decoration" style="top: 10%; left: 5%;">🌸</div>
+    <div class="kawaii-decoration" style="top: 20%; right: 10%;">💖</div>
+    <div class="kawaii-decoration" style="top: 40%; left: 3%;">✨</div>
+    <div class="kawaii-decoration" style="top: 60%; right: 7%;">🎀</div>
+    <div class="kawaii-decoration" style="bottom: 30%; left: 8%;">🌙</div>
+    <div class="kawaii-decoration" style="bottom: 15%; right: 12%;">⭐</div>
+    <div class="kawaii-decoration" style="top: 70%; left: 15%;">🦋</div>
+    <div class="kawaii-decoration" style="top: 30%; right: 15%;">🌈</div>
+    
     <div class="container">
         <!-- Header Section -->
-        <div class="header">
-            <h1>☕ Sistema de Gestión - Tienda Cafetería</h1>
-            <p>Gestiona tu inventario de productos de manera eficiente y moderna</p>
+        <div class="header kawaii-special-card kawaii-super-tooltip" 
+             data-kawaii-tooltip="💖 Sistema de gestión súper kawaii 💖">
+            <h1>💖 Sistema de Gestión - Tienda Cafetería Kawaii 🌸</h1>
+            <p>✨ Gestiona tu inventario de productos de manera eficiente y súper adorable 💕</p>
+            
+            <!-- Kawaii Status Indicator -->
+            <div class="kawaii-status online" style="margin: 10px 0;">
+                🌟 Sistema Activo
+            </div>
             
             <div class="stats" id="stats">
                 <!-- Las estadísticas se cargarán dinámicamente -->
@@ -20,35 +54,47 @@
         </div>
 
         <!-- Controls Section -->
-        <div class="controls">
-            <button class="btn btn-primary" onclick="showProductModal()">
+        <div class="controls kawaii-animated-border">
+            <button class="btn btn-primary kawaii-special kawaii-super-tooltip" 
+                    data-kawaii-tooltip="✨ Crea un nuevo producto kawaii ✨"
+                    onclick="showProductModal()">
                 ➕ Añadir Producto
             </button>
             
             <input type="text" 
-                   class="search-input" 
-                   placeholder="🔍 Buscar productos..." 
+                   class="search-input kawaii-super-tooltip" 
+                   data-kawaii-tooltip="💖 Busca tus productos favoritos 💖"
+                   placeholder="✨ Buscar productos... 💖" 
                    id="searchInput"
                    onkeyup="handleSearch(this.value)">
             
-            <select class="select" id="typeFilter" onchange="handleFilterChange()">
-                <option value="">Todos los tipos</option>
+            <select class="select kawaii-super-tooltip" 
+                    data-kawaii-tooltip="🌸 Filtra por tipo de producto 🌸"
+                    id="typeFilter" onchange="handleFilterChange()">
+                <option value="">🌈 Todos los tipos</option>
                 <option value="coffee">☕ Cafés</option>
                 <option value="food">🥐 Comidas</option>
                 <option value="drink">🥤 Bebidas</option>
                 <option value="dessert">🍰 Postres</option>
             </select>
             
-            <select class="select" id="statusFilter" onchange="handleFilterChange()">
-                <option value="">Todos los estados</option>
+            <select class="select kawaii-super-tooltip" 
+                    data-kawaii-tooltip="⭐ Filtra por estado ⭐"
+                    id="statusFilter" onchange="handleFilterChange()">
+                <option value="">🎀 Todos los estados</option>
                 <option value="true">✅ Activos</option>
                 <option value="false">❌ Inactivos</option>
             </select>
             
-            <button class="btn btn-secondary" onclick="exportProducts()">
+            <button class="btn btn-secondary kawaii-super-tooltip" 
+                    data-kawaii-tooltip="💫 Exporta tus datos 💫"
+                    onclick="exportProducts()">
                 📤 Exportar
             </button>
         </div>
+
+        <!-- Kawaii Divider -->
+        <div class="kawaii-divider"></div>
 
         <!-- Products Grid -->
         <div class="products-grid" id="productsContainer">
@@ -143,6 +189,7 @@
     <script src="assets/js/services/productService.js"></script>
     <script src="assets/js/views/productView.js"></script>
     <script src="assets/js/controllers/productController.js"></script>
+    <script src="assets/js/pixel-mode.js"></script>
     <script src="assets/js/app.js"></script>
 </body>
 </html>

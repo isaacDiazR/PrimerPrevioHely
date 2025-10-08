@@ -1,0 +1,1216 @@
+/* ==========================================================================
+   Pixel Art Kawaii Theme with Pastel Colors 🎮🌸✨
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+/* Kawaii Pixel Art Variables */
+:root {
+    --kawaii-pink: #FFB3D9;
+    --kawaii-purple: #D4B3FF;
+    --kawaii-blue: #B3D9FF;
+    --kawaii-green: #B3FFD9;
+    --kawaii-yellow: #FFF9B3;
+    --kawaii-peach: #FFD1B3;
+    --kawaii-lavender: #E6B3FF;
+    --kawaii-mint: #B3FFE6;
+    
+    /* Darker variants for borders and text */
+    --kawaii-pink-dark: #FF80C7;
+    --kawaii-purple-dark: #B380FF;
+    --kawaii-blue-dark: #80C7FF;
+    --kawaii-green-dark: #80FFC7;
+    --kawaii-text-dark: #6B4E7D;
+    --kawaii-border-dark: #8E44AD;
+    
+    /* Pixel sizes */
+    --pixel-unit: 4px;
+    --pixel-border: 3px;
+}
+
+/* Base Pixel Art Enhancement */
+* {
+    image-rendering: -moz-crisp-edges;
+    image-rendering: -webkit-crisp-edges;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+}
+
+/* Global Pixel Font */
+body.pixel-mode-active {
+    font-family: 'Press Start 2P', 'Courier New', monospace !important;
+    background: linear-gradient(45deg, 
+        var(--kawaii-pink) 0%, 
+        var(--kawaii-purple) 25%, 
+        var(--kawaii-blue) 50%, 
+        var(--kawaii-green) 75%, 
+        var(--kawaii-yellow) 100%);
+    background-size: 800% 800%;
+    animation: kawaii-gradient-shift 12s ease-in-out infinite;
+}
+
+/* Kawaii floating pixel hearts */
+body.pixel-mode-active::before {
+    content: '💖 🌸 ✨ 💜 💙 💚 💛 🎀';
+    position: fixed;
+    top: -50px;
+    left: -50px;
+    right: -50px;
+    bottom: -50px;
+    font-size: 24px;
+    opacity: 0.3;
+    animation: kawaii-float 25s linear infinite;
+    pointer-events: none;
+    z-index: -1;
+    filter: drop-shadow(2px 2px 0 var(--kawaii-border-dark));
+}
+
+/* Kawaii pixel art animations */
+@keyframes kawaii-gradient-shift {
+    0%, 100% { background-position: 0% 50%; }
+    25% { background-position: 100% 0%; }
+    50% { background-position: 100% 100%; }
+    75% { background-position: 0% 100%; }
+}
+
+@keyframes kawaii-float {
+    0% { transform: translateY(100vh) rotate(0deg) scale(1); }
+    25% { transform: translateY(75vh) rotate(90deg) scale(1.2); }
+    50% { transform: translateY(50vh) rotate(180deg) scale(0.8); }
+    75% { transform: translateY(25vh) rotate(270deg) scale(1.1); }
+    100% { transform: translateY(-100vh) rotate(360deg) scale(1); }
+}
+
+/* Pixel Text Classes */
+.pixel-text,
+body.pixel-mode-active h1,
+body.pixel-mode-active h2,
+body.pixel-mode-active h3,
+body.pixel-mode-active .btn,
+body.pixel-mode-active .search-input,
+body.pixel-mode-active .select {
+    font-family: 'Press Start 2P', 'Courier New', monospace !important;
+    letter-spacing: 1px;
+    line-height: 1.6;
+    text-shadow: 2px 2px 0 var(--kawaii-border-dark);
+}
+
+body.pixel-mode-active h1 {
+    font-size: 20px;
+    color: var(--kawaii-pink-dark);
+}
+
+body.pixel-mode-active h2 {
+    font-size: 16px;
+    color: var(--kawaii-purple-dark);
+}
+
+body.pixel-mode-active h3 {
+    font-size: 12px;
+    color: var(--kawaii-blue-dark);
+}
+
+body.pixel-mode-active p {
+    font-size: 10px;
+    line-height: 1.8;
+    color: var(--kawaii-text-dark);
+}
+
+/* Kawaii Pixel Borders */
+.pixel-border,
+body.pixel-mode-active .header,
+body.pixel-mode-active .controls,
+body.pixel-mode-active .stat-card,
+body.pixel-mode-active .btn,
+body.pixel-mode-active .search-input,
+body.pixel-mode-active .select,
+body.pixel-mode-active .table,
+body.pixel-mode-active .modal-content {
+    border: var(--pixel-border) solid var(--kawaii-border-dark);
+    border-radius: 0 !important;
+    position: relative;
+    box-shadow: 
+        6px 6px 0 var(--kawaii-purple-dark),
+        12px 12px 0 rgba(139, 69, 19, 0.2);
+}
+
+/* Double border effect for kawaii pixel style */
+body.pixel-mode-active .header::after,
+body.pixel-mode-active .stat-card::after,
+body.pixel-mode-active .btn::after {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: -6px;
+    right: -6px;
+    bottom: -6px;
+    border: 2px solid var(--kawaii-pink);
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Kawaii Pixel Buttons */
+body.pixel-mode-active .btn {
+    background: linear-gradient(135deg, var(--kawaii-pink) 0%, var(--kawaii-purple) 100%);
+    color: white;
+    font-size: 10px;
+    padding: 12px 16px;
+    border: var(--pixel-border) solid var(--kawaii-border-dark);
+    transition: all 0.1s ease;
+    text-transform: uppercase;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+body.pixel-mode-active .btn::before {
+    content: '✨';
+    position: absolute;
+    top: 4px;
+    right: 6px;
+    font-size: 8px;
+    animation: kawaii-sparkle 2s ease-in-out infinite;
+}
+
+body.pixel-mode-active .btn:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 
+        8px 8px 0 var(--kawaii-purple-dark),
+        16px 16px 0 rgba(139, 69, 19, 0.3);
+    background: linear-gradient(135deg, var(--kawaii-purple) 0%, var(--kawaii-blue) 100%);
+}
+
+body.pixel-mode-active .btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: 
+        2px 2px 0 var(--kawaii-purple-dark);
+}
+
+body.pixel-mode-active .btn-secondary {
+    background: linear-gradient(135deg, var(--kawaii-green) 0%, var(--kawaii-mint) 100%);
+}
+
+body.pixel-mode-active .btn-secondary:hover {
+    background: linear-gradient(135deg, var(--kawaii-blue) 0%, var(--kawaii-green) 100%);
+}
+
+/* Kawaii Pixel Header */
+body.pixel-mode-active .header {
+    background: linear-gradient(90deg, 
+        var(--kawaii-pink) 0%, 
+        var(--kawaii-purple) 25%, 
+        var(--kawaii-blue) 50%, 
+        var(--kawaii-lavender) 75%, 
+        var(--kawaii-pink) 100%);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+body.pixel-mode-active .header::before {
+    content: '🌸';
+    position: absolute;
+    top: 16px;
+    right: 24px;
+    font-size: 24px;
+    animation: kawaii-bounce 3s ease-in-out infinite;
+    filter: drop-shadow(2px 2px 0 var(--kawaii-border-dark));
+}
+
+body.pixel-mode-active .header h1::before {
+    content: '💖 ';
+    font-size: 18px;
+    margin-right: 8px;
+}
+
+/* Kawaii Pixel Stat Cards */
+body.pixel-mode-active .stat-card {
+    background: linear-gradient(135deg, 
+        var(--kawaii-yellow) 0%, 
+        var(--kawaii-peach) 50%, 
+        var(--kawaii-pink) 100%);
+    padding: 1.5rem;
+    text-align: center;
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+body.pixel-mode-active .stat-card::before {
+    content: '🎮';
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-size: 16px;
+    filter: drop-shadow(1px 1px 0 var(--kawaii-border-dark));
+}
+
+body.pixel-mode-active .stat-card:hover {
+    transform: translate(-3px, -3px);
+    box-shadow: 
+        9px 9px 0 var(--kawaii-purple-dark),
+        18px 18px 0 rgba(139, 69, 19, 0.2);
+    background: linear-gradient(135deg, 
+        var(--kawaii-peach) 0%, 
+        var(--kawaii-lavender) 50%, 
+        var(--kawaii-mint) 100%);
+}
+
+body.pixel-mode-active .stat-number {
+    font-size: 18px;
+    font-weight: normal;
+    color: var(--kawaii-pink-dark);
+    text-shadow: 2px 2px 0 var(--kawaii-border-dark);
+    display: block;
+    margin-bottom: 8px;
+}
+
+body.pixel-mode-active .stat-label {
+    font-size: 8px;
+    color: var(--kawaii-text-dark);
+    margin-top: 4px;
+    text-transform: uppercase;
+}
+
+/* Kawaii Pixel Controls */
+body.pixel-mode-active .controls {
+    background: linear-gradient(135deg, 
+        var(--kawaii-lavender) 0%, 
+        var(--kawaii-mint) 50%, 
+        var(--kawaii-yellow) 100%);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    flex-wrap: wrap;
+    position: relative;
+}
+
+body.pixel-mode-active .controls::before {
+    content: '🎨';
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    font-size: 20px;
+    filter: drop-shadow(2px 2px 0 var(--kawaii-border-dark));
+}
+
+/* Kawaii Pixel Inputs */
+body.pixel-mode-active .search-input,
+body.pixel-mode-active .select {
+    font-size: 10px;
+    padding: 12px;
+    background: var(--kawaii-yellow);
+    border: var(--pixel-border) solid var(--kawaii-border-dark);
+    color: var(--kawaii-text-dark);
+    box-shadow: 
+        inset 3px 3px 0 rgba(0, 0, 0, 0.1),
+        inset -2px -2px 0 rgba(255, 255, 255, 0.8);
+}
+
+body.pixel-mode-active .search-input:focus,
+body.pixel-mode-active .select:focus {
+    outline: none;
+    border-color: var(--kawaii-pink-dark);
+    background: var(--kawaii-peach);
+    box-shadow: 
+        inset 3px 3px 0 rgba(255, 179, 217, 0.3),
+        inset -2px -2px 0 rgba(255, 255, 255, 0.8),
+        0 0 0 3px rgba(255, 179, 217, 0.4);
+}
+
+/* Kawaii Pixel Table */
+body.pixel-mode-active .table {
+    border: var(--pixel-border) solid var(--kawaii-border-dark);
+    overflow: hidden;
+    background: var(--kawaii-yellow);
+}
+
+body.pixel-mode-active .table th {
+    background: linear-gradient(135deg, var(--kawaii-pink) 0%, var(--kawaii-purple) 100%);
+    color: white;
+    font-size: 8px;
+    padding: 12px 8px;
+    border: 2px solid var(--kawaii-border-dark);
+    text-shadow: 1px 1px 0 var(--kawaii-border-dark);
+    text-transform: uppercase;
+}
+
+body.pixel-mode-active .table td {
+    border: 1px solid var(--kawaii-border-dark);
+    font-size: 8px;
+    padding: 8px;
+    background: var(--kawaii-yellow);
+}
+
+body.pixel-mode-active .table tbody tr:nth-child(even) td {
+    background: var(--kawaii-peach);
+}
+
+body.pixel-mode-active .table tbody tr:hover td {
+    background: var(--kawaii-mint);
+    color: var(--kawaii-text-dark);
+}
+
+/* Kawaii Pixel Modal */
+body.pixel-mode-active .modal-content {
+    background: linear-gradient(135deg, 
+        var(--kawaii-pink) 0%, 
+        var(--kawaii-purple) 25%, 
+        var(--kawaii-blue) 50%, 
+        var(--kawaii-yellow) 100%);
+    border: 4px solid var(--kawaii-border-dark);
+    box-shadow: 
+        12px 12px 0 var(--kawaii-purple-dark),
+        24px 24px 0 rgba(139, 69, 19, 0.2);
+}
+
+body.pixel-mode-active .modal-header {
+    background: rgba(255, 255, 255, 0.9);
+    border-bottom: var(--pixel-border) solid var(--kawaii-border-dark);
+}
+
+body.pixel-mode-active .modal-header h2::before {
+    content: '🎀 ';
+    font-size: 14px;
+}
+
+/* Kawaii Animation Keyframes */
+@keyframes kawaii-sparkle {
+    0%, 100% { 
+        transform: scale(1) rotate(0deg); 
+        opacity: 0.8; 
+    }
+    50% { 
+        transform: scale(1.4) rotate(180deg); 
+        opacity: 1; 
+    }
+}
+
+@keyframes kawaii-bounce {
+    0%, 100% { 
+        transform: translateY(0px) rotate(0deg); 
+    }
+    50% { 
+        transform: translateY(-12px) rotate(10deg); 
+    }
+}
+
+/* Kawaii Pixel Loading Animation */
+.kawaii-loading {
+    width: 32px;
+    height: 32px;
+    background: var(--kawaii-pink);
+    border: 3px solid var(--kawaii-border-dark);
+    position: relative;
+    animation: kawaii-loading-spin 1.5s steps(8, end) infinite;
+    margin: 0 auto;
+}
+
+.kawaii-loading::before {
+    content: '💖';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 12px;
+    animation: kawaii-heart-pulse 1s ease-in-out infinite;
+}
+
+@keyframes kawaii-loading-spin {
+    0% { transform: rotate(0deg); background: var(--kawaii-pink); }
+    12.5% { transform: rotate(45deg); background: var(--kawaii-purple); }
+    25% { transform: rotate(90deg); background: var(--kawaii-blue); }
+    37.5% { transform: rotate(135deg); background: var(--kawaii-green); }
+    50% { transform: rotate(180deg); background: var(--kawaii-yellow); }
+    62.5% { transform: rotate(225deg); background: var(--kawaii-peach); }
+    75% { transform: rotate(270deg); background: var(--kawaii-lavender); }
+    87.5% { transform: rotate(315deg); background: var(--kawaii-mint); }
+    100% { transform: rotate(360deg); background: var(--kawaii-pink); }
+}
+
+@keyframes kawaii-heart-pulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); }
+    50% { transform: translate(-50%, -50%) scale(1.3); }
+}
+
+/* Kawaii Pixel Notifications */
+.kawaii-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, var(--kawaii-pink) 0%, var(--kawaii-purple) 100%);
+    color: white;
+    padding: 16px 20px;
+    border: 3px solid var(--kawaii-border-dark);
+    font-family: 'Press Start 2P', monospace;
+    font-size: 10px;
+    z-index: 1002;
+    box-shadow: 6px 6px 0 var(--kawaii-purple-dark);
+    animation: kawaii-notification-slide 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    max-width: 300px;
+    text-align: center;
+}
+
+.kawaii-notification::before {
+    content: '✨ ';
+    margin-right: 8px;
+    animation: kawaii-sparkle 1.5s ease-in-out infinite;
+}
+
+@keyframes kawaii-notification-slide {
+    from { 
+        transform: translateX(100%) rotate(-10deg); 
+        opacity: 0; 
+    }
+    to { 
+        transform: translateX(0) rotate(0deg); 
+        opacity: 1; 
+    }
+}
+
+/* Kawaii Pixel Progress Bar */
+.kawaii-progress {
+    width: 100%;
+    height: 20px;
+    background: var(--kawaii-yellow);
+    border: 3px solid var(--kawaii-border-dark);
+    overflow: hidden;
+    position: relative;
+    box-shadow: inset 2px 2px 0 rgba(0, 0, 0, 0.2);
+}
+
+.kawaii-progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, 
+        var(--kawaii-pink) 0%, 
+        var(--kawaii-purple) 50%, 
+        var(--kawaii-blue) 100%);
+    transition: width 0.5s ease;
+    position: relative;
+    animation: kawaii-progress-shine 2s ease-in-out infinite;
+}
+
+.kawaii-progress-bar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+        90deg,
+        transparent 0px,
+        transparent 4px,
+        rgba(255, 255, 255, 0.3) 4px,
+        rgba(255, 255, 255, 0.3) 8px
+    );
+}
+
+.kawaii-progress-bar::after {
+    content: '💖';
+    position: absolute;
+    right: 4px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 8px;
+    animation: kawaii-heart-pulse 1s ease-in-out infinite;
+}
+
+@keyframes kawaii-progress-shine {
+    0%, 100% { filter: brightness(1); }
+    50% { filter: brightness(1.2); }
+}
+
+/* Kawaii Pixel Badges */
+.kawaii-badge {
+    display: inline-block;
+    padding: 6px 12px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 8px;
+    background: var(--kawaii-pink);
+    color: white;
+    border: 2px solid var(--kawaii-border-dark);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 3px 3px 0 var(--kawaii-purple-dark);
+    position: relative;
+}
+
+.kawaii-badge::before {
+    content: '✨';
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    font-size: 10px;
+    animation: kawaii-sparkle 2s ease-in-out infinite;
+}
+
+.kawaii-badge-success {
+    background: var(--kawaii-green);
+}
+
+.kawaii-badge-success::before {
+    content: '🌟';
+}
+
+.kawaii-badge-warning {
+    background: var(--kawaii-yellow);
+    color: var(--kawaii-text-dark);
+}
+
+.kawaii-badge-warning::before {
+    content: '⚡';
+}
+
+.kawaii-badge-danger {
+    background: var(--kawaii-peach);
+}
+
+.kawaii-badge-danger::before {
+    content: '💫';
+}
+
+/* Kawaii Pixel Background Patterns */
+body.pixel-mode-active .container {
+    position: relative;
+}
+
+body.pixel-mode-active .container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(circle at 4px 4px, rgba(255, 179, 217, 0.2) 2px, transparent 0),
+        radial-gradient(circle at 20px 20px, rgba(212, 179, 255, 0.2) 2px, transparent 0),
+        radial-gradient(circle at 12px 36px, rgba(179, 217, 255, 0.2) 2px, transparent 0);
+    background-size: 24px 24px, 40px 40px, 48px 48px;
+    background-position: 0 0, 12px 12px, 24px 24px;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0.6;
+}
+
+/* Kawaii Pixel Tooltips */
+.kawaii-tooltip {
+    position: relative;
+    cursor: help;
+}
+
+.kawaii-tooltip::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--kawaii-purple);
+    color: white;
+    padding: 8px 12px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 8px;
+    white-space: nowrap;
+    border: 2px solid var(--kawaii-border-dark);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    margin-bottom: 8px;
+    box-shadow: 4px 4px 0 var(--kawaii-purple-dark);
+}
+
+.kawaii-tooltip::before {
+    content: '💖';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: -6px;
+    font-size: 8px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 1001;
+}
+
+.kawaii-tooltip:hover::after,
+.kawaii-tooltip:hover::before {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Kawaii Pixel Scrollbar */
+body.pixel-mode-active ::-webkit-scrollbar {
+    width: 16px;
+}
+
+body.pixel-mode-active ::-webkit-scrollbar-track {
+    background: var(--kawaii-yellow);
+    border: 2px solid var(--kawaii-border-dark);
+}
+
+body.pixel-mode-active ::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, var(--kawaii-pink) 0%, var(--kawaii-purple) 100%);
+    border: 2px solid var(--kawaii-border-dark);
+    box-shadow: inset 2px 2px 0 rgba(255, 255, 255, 0.3);
+}
+
+body.pixel-mode-active ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, var(--kawaii-purple) 0%, var(--kawaii-blue) 100%);
+}
+
+/* Kawaii Pixel Form Elements */
+body.pixel-mode-active input[type="text"],
+body.pixel-mode-active input[type="number"],
+body.pixel-mode-active textarea {
+    background: var(--kawaii-yellow);
+    border: 3px solid var(--kawaii-border-dark);
+    font-family: 'Press Start 2P', monospace;
+    font-size: 10px;
+    padding: 12px;
+    color: var(--kawaii-text-dark);
+    box-shadow: 
+        inset 3px 3px 0 rgba(0, 0, 0, 0.1),
+        inset -2px -2px 0 rgba(255, 255, 255, 0.8);
+    transition: all 0.2s ease;
+}
+
+body.pixel-mode-active input[type="text"]:focus,
+body.pixel-mode-active input[type="number"]:focus,
+body.pixel-mode-active textarea:focus {
+    outline: none;
+    border-color: var(--kawaii-pink-dark);
+    background: var(--kawaii-peach);
+    box-shadow: 
+        inset 3px 3px 0 rgba(255, 179, 217, 0.3),
+        inset -2px -2px 0 rgba(255, 255, 255, 0.8),
+        0 0 0 4px rgba(255, 179, 217, 0.4);
+}
+
+/* Kawaii Pixel Close Button */
+body.pixel-mode-active .close {
+    background: linear-gradient(135deg, var(--kawaii-peach) 0%, var(--kawaii-pink) 100%);
+    color: white;
+    border: 3px solid var(--kawaii-border-dark);
+    width: 40px;
+    height: 40px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 4px 4px 0 var(--kawaii-purple-dark);
+    transition: all 0.1s ease;
+}
+
+body.pixel-mode-active .close:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 6px 6px 0 var(--kawaii-purple-dark);
+    background: linear-gradient(135deg, var(--kawaii-pink) 0%, var(--kawaii-purple) 100%);
+}
+
+/* Kawaii Status Indicators */
+.kawaii-status-active {
+    color: var(--kawaii-green-dark);
+}
+
+.kawaii-status-active::before {
+    content: '🌟 ';
+    font-size: 8px;
+}
+
+.kawaii-status-inactive {
+    color: var(--kawaii-text-dark);
+    opacity: 0.7;
+}
+
+.kawaii-status-inactive::before {
+    content: '💤 ';
+    font-size: 8px;
+}
+
+/* Responsive Kawaii Adjustments */
+@media (max-width: 768px) {
+    body.pixel-mode-active h1 {
+        font-size: 16px;
+    }
+    
+    body.pixel-mode-active h2 {
+        font-size: 12px;
+    }
+    
+    body.pixel-mode-active .btn {
+        font-size: 8px;
+        padding: 10px 12px;
+    }
+    
+    body.pixel-mode-active .search-input,
+    body.pixel-mode-active .select {
+        font-size: 8px;
+        padding: 10px;
+    }
+    
+    body.pixel-mode-active .stat-number {
+        font-size: 14px;
+    }
+    
+    body.pixel-mode-active .stat-label {
+        font-size: 7px;
+    }
+}
+
+/* Kawaii Pixel Art Decoration Elements */
+.kawaii-decoration {
+    position: absolute;
+    font-size: 16px;
+    opacity: 0.6;
+    animation: kawaii-float-decoration 8s ease-in-out infinite;
+    pointer-events: none;
+    filter: drop-shadow(1px 1px 0 var(--kawaii-border-dark));
+}
+
+.kawaii-decoration:nth-child(1) { top: 10%; left: 5%; animation-delay: 0s; }
+.kawaii-decoration:nth-child(2) { top: 20%; right: 10%; animation-delay: 1s; }
+.kawaii-decoration:nth-child(3) { top: 60%; left: 8%; animation-delay: 2s; }
+.kawaii-decoration:nth-child(4) { bottom: 20%; right: 5%; animation-delay: 3s; }
+
+@keyframes kawaii-float-decoration {
+    0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
+    25% { transform: translateY(-10px) rotate(5deg) scale(1.1); }
+    50% { transform: translateY(-5px) rotate(-3deg) scale(0.9); }
+    75% { transform: translateY(-15px) rotate(8deg) scale(1.05); }
+}
+
+/* Pixel Font Classes */
+.pixel-text {
+    font-family: 'Press Start 2P', 'Courier New', monospace !important;
+    letter-spacing: 1px;
+    line-height: 1.6;
+}
+
+.pixel-text-small {
+    font-size: 8px;
+}
+
+.pixel-text-medium {
+    font-size: 12px;
+}
+
+.pixel-text-large {
+    font-size: 16px;
+}
+
+.pixel-text-xl {
+    font-size: 20px;
+}
+
+/* Pixel Border Utility */
+.pixel-border {
+    border: var(--pixel-border) solid var(--pixel-dark);
+    border-radius: 0 !important;
+    position: relative;
+}
+
+.pixel-border::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    pointer-events: none;
+}
+
+/* Pixel Shadows */
+.pixel-shadow {
+    box-shadow: 
+        var(--pixel-unit) var(--pixel-unit) 0 var(--pixel-dark),
+        calc(var(--pixel-unit) * 2) calc(var(--pixel-unit) * 2) 0 rgba(0, 0, 0, 0.3);
+}
+
+.pixel-shadow-inset {
+    box-shadow: 
+        inset var(--pixel-unit) var(--pixel-unit) 0 rgba(255, 255, 255, 0.8),
+        inset calc(var(--pixel-unit) * -1) calc(var(--pixel-unit) * -1) 0 rgba(0, 0, 0, 0.3);
+}
+
+/* Pixel Buttons */
+.btn.pixel-btn {
+    font-family: 'Press Start 2P', 'Courier New', monospace !important;
+    font-size: 10px;
+    border: none;
+    border-radius: 0;
+    padding: 12px 16px;
+    position: relative;
+    transition: all 0.1s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    background: linear-gradient(135deg, var(--pixel-primary) 0%, #FF69B4 100%);
+    color: white;
+    text-shadow: 1px 1px 0 var(--pixel-dark);
+}
+
+.btn.pixel-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 2px solid var(--pixel-dark);
+    background: 
+        linear-gradient(90deg, transparent 0%, transparent 25%, rgba(255,255,255,0.3) 50%, transparent 75%, transparent 100%);
+}
+
+.btn.pixel-btn::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    pointer-events: none;
+}
+
+.btn.pixel-btn:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 
+        3px 3px 0 var(--pixel-dark),
+        6px 6px 0 rgba(0, 0, 0, 0.3);
+}
+
+.btn.pixel-btn:active {
+    transform: translate(1px, 1px);
+    box-shadow: 
+        1px 1px 0 var(--pixel-dark);
+}
+
+/* Pixel Secondary Button */
+.btn.pixel-btn-secondary {
+    background: linear-gradient(135deg, var(--pixel-secondary) 0%, #87CEEB 100%);
+}
+
+/* Pixel Cards */
+.stat-card.pixel-card {
+    border-radius: 0;
+    border: 3px solid var(--pixel-dark);
+    background: 
+        linear-gradient(45deg, 
+            var(--pixel-light) 0%, 
+            #FFE5F1 25%, 
+            #E5F3FF 50%, 
+            #F0E5FF 75%, 
+            var(--pixel-light) 100%);
+    position: relative;
+    box-shadow: 
+        4px 4px 0 var(--pixel-dark),
+        8px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.stat-card.pixel-card::before {
+    content: '🎮';
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-size: 16px;
+    filter: drop-shadow(1px 1px 0 var(--pixel-dark));
+}
+
+.stat-card.pixel-card:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 
+        6px 6px 0 var(--pixel-dark),
+        12px 12px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* Pixel Inputs */
+.search-input.pixel-input,
+.select.pixel-select {
+    font-family: 'Press Start 2P', 'Courier New', monospace !important;
+    font-size: 10px;
+    border: 3px solid var(--pixel-dark);
+    border-radius: 0;
+    padding: 12px;
+    background: var(--pixel-light);
+    box-shadow: 
+        inset 2px 2px 0 rgba(0, 0, 0, 0.2),
+        inset -1px -1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.search-input.pixel-input:focus,
+.select.pixel-select:focus {
+    outline: none;
+    border-color: var(--pixel-primary);
+    box-shadow: 
+        inset 2px 2px 0 rgba(255, 20, 147, 0.2),
+        inset -1px -1px 0 rgba(255, 255, 255, 0.8),
+        0 0 0 2px rgba(255, 20, 147, 0.3);
+}
+
+/* Pixel Header Enhancement */
+.header.pixel-header {
+    border-radius: 0;
+    border: 4px solid var(--pixel-dark);
+    background: 
+        linear-gradient(90deg, 
+            #FFE5F1 0%, 
+            #F8E8FF 25%, 
+            #E5F3FF 50%, 
+            #F0E5FF 75%, 
+            #FFE5F1 100%);
+    position: relative;
+    box-shadow: 
+        6px 6px 0 var(--pixel-dark),
+        12px 12px 0 rgba(0, 0, 0, 0.2);
+}
+
+.header.pixel-header::before {
+    content: '⭐';
+    position: absolute;
+    top: 12px;
+    right: 20px;
+    font-size: 24px;
+    animation: pixelSparkle 2s ease-in-out infinite;
+    filter: drop-shadow(2px 2px 0 var(--pixel-dark));
+}
+
+.header.pixel-header::after {
+    content: '🌸';
+    position: absolute;
+    bottom: 12px;
+    left: 20px;
+    font-size: 20px;
+    animation: pixelBounce 2s ease-in-out infinite;
+    filter: drop-shadow(2px 2px 0 var(--pixel-dark));
+}
+
+@keyframes pixelSparkle {
+    0%, 100% { 
+        transform: scale(1) rotate(0deg); 
+        opacity: 0.8; 
+    }
+    50% { 
+        transform: scale(1.3) rotate(90deg); 
+        opacity: 1; 
+    }
+}
+
+@keyframes pixelBounce {
+    0%, 100% { 
+        transform: translateY(0px); 
+    }
+    50% { 
+        transform: translateY(-8px); 
+    }
+}
+
+/* Pixel Modal Enhancement */
+.modal-content.pixel-modal {
+    border-radius: 0;
+    border: 4px solid var(--pixel-dark);
+    box-shadow: 
+        8px 8px 0 var(--pixel-dark),
+        16px 16px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* Pixel Table */
+.table.pixel-table {
+    border: 3px solid var(--pixel-dark);
+    border-radius: 0;
+    overflow: hidden;
+}
+
+.table.pixel-table th,
+.table.pixel-table td {
+    border: 1px solid var(--pixel-dark);
+    font-family: 'Press Start 2P', 'Courier New', monospace;
+    font-size: 8px;
+    padding: 8px;
+}
+
+.table.pixel-table th {
+    background: linear-gradient(135deg, var(--pixel-primary) 0%, #FF69B4 100%);
+    color: white;
+    text-shadow: 1px 1px 0 var(--pixel-dark);
+}
+
+.table.pixel-table tbody tr:nth-child(even) {
+    background: rgba(255, 229, 241, 0.5);
+}
+
+.table.pixel-table tbody tr:hover {
+    background: rgba(255, 20, 147, 0.1);
+}
+
+/* Pixel Loading Animation */
+.pixel-loading {
+    width: 32px;
+    height: 32px;
+    background: var(--pixel-primary);
+    border: 2px solid var(--pixel-dark);
+    animation: pixelSpin 1s steps(4, end) infinite;
+    margin: 0 auto;
+}
+
+@keyframes pixelSpin {
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(90deg); }
+    50% { transform: rotate(180deg); }
+    75% { transform: rotate(270deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Pixel Tooltips */
+.pixel-tooltip {
+    position: relative;
+    cursor: help;
+}
+
+.pixel-tooltip::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--pixel-dark);
+    color: var(--pixel-light);
+    padding: 8px 12px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 8px;
+    white-space: nowrap;
+    border: 2px solid var(--pixel-light);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease;
+    z-index: 1000;
+    margin-bottom: 8px;
+}
+
+.pixel-tooltip:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Pixel Progress Bar */
+.pixel-progress {
+    width: 100%;
+    height: 16px;
+    background: var(--pixel-light);
+    border: 2px solid var(--pixel-dark);
+    overflow: hidden;
+    position: relative;
+}
+
+.pixel-progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--pixel-success) 0%, #90EE90 100%);
+    transition: width 0.3s ease;
+    position: relative;
+}
+
+.pixel-progress-bar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+        90deg,
+        transparent 0px,
+        transparent 2px,
+        rgba(255, 255, 255, 0.3) 2px,
+        rgba(255, 255, 255, 0.3) 4px
+    );
+}
+
+/* Pixel Badges */
+.pixel-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 8px;
+    background: var(--pixel-accent);
+    color: var(--pixel-dark);
+    border: 2px solid var(--pixel-dark);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 2px 2px 0 var(--pixel-dark);
+}
+
+.pixel-badge-success {
+    background: var(--pixel-success);
+    color: white;
+}
+
+.pixel-badge-danger {
+    background: var(--pixel-danger);
+    color: white;
+}
+
+.pixel-badge-warning {
+    background: var(--pixel-warning);
+    color: white;
+}
+
+/* Pixel Art Background Pattern */
+.pixel-bg-pattern {
+    background-image: 
+        radial-gradient(circle at 2px 2px, rgba(255, 20, 147, 0.1) 1px, transparent 0),
+        radial-gradient(circle at 10px 10px, rgba(0, 191, 255, 0.1) 1px, transparent 0);
+    background-size: 16px 16px;
+    background-position: 0 0, 8px 8px;
+}
+
+/* Responsive Pixel Adjustments */
+@media (max-width: 768px) {
+    .pixel-text {
+        font-size: 10px;
+    }
+    
+    .btn.pixel-btn {
+        font-size: 8px;
+        padding: 10px 12px;
+    }
+    
+    .search-input.pixel-input,
+    .select.pixel-select {
+        font-size: 8px;
+        padding: 10px;
+    }
+}
+
+/* Pixel Art Toggle Button */
+.pixel-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1001;
+    background: linear-gradient(135deg, var(--pixel-primary) 0%, #FF69B4 100%);
+    color: white;
+    border: 3px solid var(--pixel-dark);
+    border-radius: 0;
+    padding: 12px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 10px;
+    cursor: pointer;
+    box-shadow: 4px 4px 0 var(--pixel-dark);
+    transition: all 0.1s ease;
+}
+
+.pixel-toggle:hover {
+    transform: translate(-1px, -1px);
+    box-shadow: 6px 6px 0 var(--pixel-dark);
+}
+
+.pixel-toggle:active {
+    transform: translate(1px, 1px);
+    box-shadow: 2px 2px 0 var(--pixel-dark);
+}

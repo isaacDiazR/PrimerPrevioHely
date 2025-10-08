@@ -473,3 +473,182 @@ document.addEventListener('DOMContentLoaded', () => {
         console.error('❌ Failed to initialize Cafetería App:', error);
     }
 });
+
+// ==========================================================================
+// Pixel Art Mode Functions
+// ==========================================================================
+
+/**
+ * Initialize pixel mode from localStorage
+ */
+function initializePixelMode() {
+    const isPixelMode = localStorage.getItem('pixelMode') === 'true';
+    if (isPixelMode) {
+        enablePixelMode();
+    }
+}
+
+/**
+ * Toggle pixel art mode
+ */
+function togglePixelMode() {
+    const body = document.body;
+    const isCurrentlyPixel = body.classList.contains('pixel-mode-active');
+    
+    if (isCurrentlyPixel) {
+        disablePixelMode();
+    } else {
+        enablePixelMode();
+    }
+    
+    // Save preference
+    localStorage.setItem('pixelMode', (!isCurrentlyPixel).toString());
+}
+
+/**
+ * Enable pixel art mode
+ */
+function enablePixelMode() {
+    const body = document.body;
+    body.classList.add('pixel-mode-active');
+    
+    // Add pixel classes to elements
+    const header = document.querySelector('.header');
+    const controls = document.querySelector('.controls');
+    const buttons = document.querySelectorAll('.btn');
+    const inputs = document.querySelectorAll('.search-input, .select');
+    const statCards = document.querySelectorAll('.stat-card');
+    const table = document.querySelector('.table');
+    const modal = document.querySelector('.modal-content');
+    
+    // Apply pixel classes
+    header?.classList.add('pixel-header');
+    controls?.classList.add('pixel-bg-pattern');
+    
+    buttons.forEach(btn => {
+        if (btn.classList.contains('btn-primary')) {
+            btn.classList.add('pixel-btn');
+        } else {
+            btn.classList.add('pixel-btn', 'pixel-btn-secondary');
+        }
+        // Make text pixel style
+        btn.classList.add('pixel-text-small');
+    });
+    
+    inputs.forEach(input => {
+        if (input.classList.contains('search-input')) {
+            input.classList.add('pixel-input');
+        } else {
+            input.classList.add('pixel-select');
+        }
+    });
+    
+    statCards.forEach(card => {
+        card.classList.add('pixel-card');
+        // Make stat numbers pixel style
+        const statNumber = card.querySelector('.stat-number');
+        const statLabel = card.querySelector('.stat-label');
+        statNumber?.classList.add('pixel-text-medium');
+        statLabel?.classList.add('pixel-text-small');
+    });
+    
+    table?.classList.add('pixel-table');
+    modal?.classList.add('pixel-modal');
+    
+    // Update toggle button
+    const toggleBtn = document.getElementById('pixelToggle');
+    if (toggleBtn) {
+        toggleBtn.textContent = '✨ KAWAII';
+        toggleBtn.classList.add('pixel-text-small');
+    }
+    
+    // Add pixel style to headers
+    const headers = document.querySelectorAll('h1, h2, h3');
+    headers.forEach(header => {
+        header.classList.add('pixel-text');
+    });
+    
+    showPixelNotification('🎮 Modo Pixel Art Activado!');
+}
+
+/**
+ * Disable pixel art mode
+ */
+function disablePixelMode() {
+    const body = document.body;
+    body.classList.remove('pixel-mode-active');
+    
+    // Remove all pixel classes
+    const elementsWithPixelClasses = document.querySelectorAll('[class*="pixel"]');
+    elementsWithPixelClasses.forEach(element => {
+        const classes = [...element.classList];
+        classes.forEach(className => {
+            if (className.startsWith('pixel-')) {
+                element.classList.remove(className);
+            }
+        });
+    });
+    
+    // Update toggle button
+    const toggleBtn = document.getElementById('pixelToggle');
+    if (toggleBtn) {
+        toggleBtn.textContent = '🎮 PIXEL';
+    }
+    
+    showPixelNotification('🌸 Modo Kawaii Restaurado!');
+}
+
+/**
+ * Show pixel mode notification
+ */
+function showPixelNotification(message) {
+    // Create notification element
+    const notification = document.createElement('div');
+    notification.style.cssText = `
+        position: fixed;
+        top: 80px;
+        right: 20px;
+        background: linear-gradient(135deg, #FF1493, #FF69B4);
+        color: white;
+        padding: 12px 16px;
+        border: 3px solid #2E2E2E;
+        font-family: 'Press Start 2P', monospace;
+        font-size: 10px;
+        z-index: 1002;
+        box-shadow: 4px 4px 0 #2E2E2E;
+        animation: slideInRight 0.3s ease-out;
+    `;
+    notification.textContent = message;
+    
+    // Add animation keyframes if not already added
+    if (!document.querySelector('#pixel-notifications-style')) {
+        const style = document.createElement('style');
+        style.id = 'pixel-notifications-style';
+        style.textContent = `
+            @keyframes slideInRight {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+            @keyframes slideOutRight {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(100%); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+    
+    document.body.appendChild(notification);
+    
+    // Remove notification after 3 seconds
+    setTimeout(() => {
+        notification.style.animation = 'slideOutRight 0.3s ease-in';
+        setTimeout(() => {
+            notification.remove();
+        }, 300);
+    }, 3000);
+}
+
+// Initialize pixel mode when app loads
+document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(initializePixelMode, 100);
+});
