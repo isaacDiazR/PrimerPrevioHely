@@ -1,14 +1,18 @@
-# 🛠️ Proyecto Reestructurado - Sistema de Gestión Cafetería
+# ☕ Sistema de Gestión - Tienda Cafetería
 
-Este proyecto ha sido reestructurado para seguir mejores prácticas de desarrollo y mantener un código más organizado y escalable.
+Sistema CRUD completo para gestión de inventarios de una cafetería, construido con JavaScript vanilla siguiendo el patrón MVC.
 
 ## 📁 Estructura del Proyecto
 
 ```
-Proyecto Pedagógico/
-├── index.html                           # Página principal (nueva estructura)
-├── Index-backup.html                    # Backup del archivo original
-├── README.md                           # Este archivo
+PrimerPrevioHely/
+├── index.html                           # Página principal del sistema
+├── README.md                           # Documentación del proyecto
+├── package.json                        # Configuración del proyecto Node.js
+├── archive/                            # Archivos históricos y backups
+│   ├── Index-backup.html               # Versión original con CSS inline
+│   └── new-index.html                  # Versión duplicada (removida)
+└── assets/                             # Recursos organizados
 └── assets/                             # Recursos organizados
     ├── css/                            # Estilos CSS
     │   ├── styles.css                  # Estilos principales
