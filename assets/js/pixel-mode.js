@@ -1,6 +1,10 @@
 // ==========================================================================
-// Kawaii Pixel Art Auto-Initialization
+// Kawaii Pixel Art Auto-Initialization - Refactored with Centralized Constants
 // ==========================================================================
+
+// Import constants (when modules are available)
+// For now, we'll use the global constants until full module conversion
+// import { KAWAII_EMOJIS, KAWAII_CONFIG, DOM_SELECTORS, CSS_CLASSES, ANIMATION_CONFIG } from './constants/index.js';
 
 /**
  * Kawaii Pixel Art Manager
@@ -8,6 +12,25 @@
  */
 class KawaiiPixelArt {
     constructor() {
+        // Define constants locally until full module migration
+        this.DECORATIONS = ['🌸', '💖', '✨', '🎀', '🌙', '⭐', '🦋', '🌈'];
+        this.HEARTS = ['💖', '💕', '💜', '💙', '💚', '💛'];
+        this.SPARKLES = ['✨', '⭐', '🌟', '💫'];
+        
+        this.WELCOME_MESSAGES = {
+            INITIALIZING: 'Inicializando Kawaii Mode',
+            LOADING: 'Cargando Pixel Art',
+            SPARKLES: 'Agregando Sparkles',
+            READY: 'Kawaii Mode Listo!'
+        };
+        
+        this.PROGRESS_THRESHOLDS = {
+            INITIALIZING: 30,
+            LOADING: 60,
+            SPARKLES: 90,
+            COMPLETE: 100
+        };
+        
         this.initialize();
     }
 
@@ -44,8 +67,8 @@ class KawaiiPixelArt {
         const interval = setInterval(() => {
             progress += Math.random() * 15 + 5; // Random progress between 5-20%
             
-            if (progress >= 100) {
-                progress = 100;
+            if (progress >= this.PROGRESS_THRESHOLDS.COMPLETE) {
+                progress = this.PROGRESS_THRESHOLDS.COMPLETE;
                 clearInterval(interval);
                 
                 // Hide welcome bar after completion
@@ -61,15 +84,15 @@ class KawaiiPixelArt {
             
             welcomeBar.style.setProperty('--progress', `${progress}%`);
             
-            // Update text based on progress
-            if (progress < 30) {
-                welcomeBar.setAttribute('data-text', 'Inicializando Kawaii Mode');
-            } else if (progress < 60) {
-                welcomeBar.setAttribute('data-text', 'Cargando Pixel Art');
-            } else if (progress < 90) {
-                welcomeBar.setAttribute('data-text', 'Agregando Sparkles');
+            // Update text based on progress using centralized messages
+            if (progress < this.PROGRESS_THRESHOLDS.INITIALIZING) {
+                welcomeBar.setAttribute('data-text', this.WELCOME_MESSAGES.INITIALIZING);
+            } else if (progress < this.PROGRESS_THRESHOLDS.LOADING) {
+                welcomeBar.setAttribute('data-text', this.WELCOME_MESSAGES.LOADING);
+            } else if (progress < this.PROGRESS_THRESHOLDS.SPARKLES) {
+                welcomeBar.setAttribute('data-text', this.WELCOME_MESSAGES.SPARKLES);
             } else {
-                welcomeBar.setAttribute('data-text', 'Kawaii Mode Listo!');
+                welcomeBar.setAttribute('data-text', this.WELCOME_MESSAGES.READY);
             }
             
         }, 100);
@@ -141,9 +164,8 @@ class KawaiiPixelArt {
      * Add decorative floating elements
      */
     addDecorativeElements() {
-        const decorations = ['🌸', '💖', '✨', '🎀', '🌙', '⭐', '🦋', '🌈'];
-        
-        decorations.forEach((decoration, index) => {
+        // Use centralized decoration emojis
+        this.DECORATIONS.forEach((decoration, index) => {
             const element = document.createElement('div');
             element.className = 'kawaii-decoration';
             element.textContent = decoration;
@@ -194,7 +216,8 @@ class KawaiiPixelArt {
     createFloatingHearts() {
         setInterval(() => {
             const heart = document.createElement('div');
-            heart.textContent = ['💖', '💕', '💜', '💙', '💚', '💛'][Math.floor(Math.random() * 6)];
+            // Use centralized heart emojis
+            heart.textContent = this.HEARTS[Math.floor(Math.random() * this.HEARTS.length)];
             heart.style.cssText = `
                 position: fixed;
                 bottom: -50px;
@@ -257,7 +280,8 @@ class KawaiiPixelArt {
             if (sparkleTimer % 5 !== 0) return; // Throttle sparkles
             
             const sparkle = document.createElement('div');
-            sparkle.textContent = ['✨', '⭐', '🌟', '💫'][Math.floor(Math.random() * 4)];
+            // Use centralized sparkle emojis
+            sparkle.textContent = this.SPARKLES[Math.floor(Math.random() * this.SPARKLES.length)];
             sparkle.style.cssText = `
                 position: fixed;
                 left: ${e.clientX - 10}px;

@@ -179,7 +179,18 @@
     </div>
 
     <!-- Scripts -->
+    <!-- Constants (must be loaded first) -->
+    <script type="module" src="assets/js/constants/index.js"></script>
+    
+    <!-- Utilities -->
+    <script src="assets/js/utils/storageManager.js"></script>
+    <script src="assets/js/utils/domUtils.js"></script>
+    <script src="assets/js/utils/validationUtils.js"></script>
+    
+    <!-- Legacy config for backward compatibility -->
     <script src="assets/js/config.js"></script>
+    
+    <!-- Core modules -->
     <script src="assets/js/utils/eventEmitter.js"></script>
     <script src="assets/js/models/product.js"></script>
     <script src="assets/js/services/productService.js"></script>

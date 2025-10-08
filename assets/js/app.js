@@ -1,5 +1,6 @@
 // ==========================================================================
 // Main Application Class - Orchestrates the entire application
+// REFACTORED: Now uses centralized constants from constants/index.js
 // ==========================================================================
 
 class CafeteriaApp {
