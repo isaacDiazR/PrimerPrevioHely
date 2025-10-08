@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Modal Component
+   Modal Component - Kawaii Edition 🌸
    ========================================================================== */
 
 .modal {
@@ -11,8 +11,8 @@
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(4px);
+    background: rgba(255, 182, 193, 0.4);
+    backdrop-filter: blur(8px);
 }
 
 .modal.show {
@@ -22,25 +22,41 @@
 }
 
 .modal-content {
-    background-color: white;
+    background: linear-gradient(135deg, #FFF0F5 0%, #F8E8FF 50%, #FFE5F1 100%);
     margin: auto;
-    border-radius: 12px;
+    border-radius: 25px;
     width: 90%;
     max-width: 600px;
     max-height: 90vh;
     overflow-y: auto;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-    animation: modalAppear 0.3s ease-out;
+    box-shadow: 0 25px 50px rgba(255, 105, 180, 0.3);
+    border: 3px solid #FFB6C1;
+    animation: modalAppear 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    position: relative;
+}
+
+.modal-content::before {
+    content: '✨🌸✨';
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(45deg, #FF69B4, #DDA0DD);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 15px;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3);
 }
 
 @keyframes modalAppear {
     from {
         opacity: 0;
-        transform: translateY(-50px) scale(0.95);
+        transform: translateY(-50px) scale(0.8) rotate(-5deg);
     }
     to {
         opacity: 1;
-        transform: translateY(0) scale(1);
+        transform: translateY(0) scale(1) rotate(0deg);
     }
 }
 
@@ -48,93 +64,138 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1.5rem;
-    border-bottom: 1px solid #e5e7eb;
+    padding: 2rem;
+    border-bottom: 3px solid #FFB6C1;
+    background: rgba(255, 255, 255, 0.7);
 }
 
 .modal-header h2 {
-    color: #374151;
-    font-size: 1.5rem;
+    color: #E91E63;
+    font-size: 1.8rem;
     margin: 0;
+    font-weight: 800;
+    text-shadow: 1px 1px 2px rgba(233, 30, 99, 0.2);
+    font-family: 'Nunito', sans-serif;
+}
+
+.modal-header h2::before {
+    content: '🎀 ';
+    font-size: 1.5rem;
 }
 
 .close {
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-weight: bold;
     cursor: pointer;
-    color: #6b7280;
-    transition: color 0.2s;
-    width: 30px;
-    height: 30px;
+    color: #FF69B4;
+    transition: all 0.3s ease;
+    width: 40px;
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
+    background: linear-gradient(45deg, #FFE5F1, #F8E8FF);
+    border: 2px solid #FFB6C1;
+    box-shadow: 0 4px 15px rgba(255, 182, 193, 0.3);
 }
 
 .close:hover {
-    color: #374151;
-    background-color: #f3f4f6;
+    color: white;
+    background: linear-gradient(45deg, #FF69B4, #FF1493);
+    transform: scale(1.1) rotate(15deg);
+    box-shadow: 0 6px 20px rgba(255, 105, 180, 0.4);
+}
+
+.close::before {
+    content: '×';
 }
 
 /* ==========================================================================
-   Form Component
+   Form Component - Kawaii Edition 💖
    ========================================================================== */
 
 #productForm {
-    padding: 1.5rem;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.9);
 }
 
 .form-group {
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
 }
 
 .form-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
 }
 
 .form-group label {
     display: block;
-    margin-bottom: 0.5rem;
-    font-weight: 600;
-    color: #374151;
+    margin-bottom: 0.8rem;
+    font-weight: 700;
+    color: #E91E63;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.form-group label::before {
+    content: '🌟 ';
+    font-size: 0.9rem;
 }
 
 .form-group input,
 .form-group select,
 .form-group textarea {
     width: 100%;
-    padding: 0.75rem;
-    border: 2px solid #e5e7eb;
-    border-radius: 8px;
-    font-size: 0.875rem;
-    transition: border-color 0.2s;
+    padding: 1rem 1.5rem;
+    border: 3px solid #FFB6C1;
+    border-radius: 20px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: linear-gradient(135deg, #FFF0F5 0%, #F8F8FF 100%);
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
+    color: #8E44AD;
+    box-shadow: 0 4px 15px rgba(255, 182, 193, 0.2);
 }
 
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: #d97706;
+    border-color: #FF69B4;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 105, 180, 0.3);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #DDA0DD;
+    font-style: italic;
 }
 
 .form-group textarea {
     resize: vertical;
-    min-height: 80px;
+    min-height: 100px;
+    line-height: 1.6;
 }
 
-/* Checkbox Component */
+/* Checkbox Component - Kawaii Edition */
 .checkbox-container {
     position: relative;
-    padding-left: 2rem;
+    padding-left: 3rem;
     cursor: pointer;
-    font-size: 0.875rem;
+    font-size: 1rem;
     user-select: none;
     display: flex;
     align-items: center;
+    font-weight: 600;
+    color: #8E44AD;
+    font-family: 'Nunito', sans-serif;
 }
 
 .checkbox-container input[type="checkbox"] {
@@ -150,21 +211,25 @@
     left: 0;
     top: 50%;
     transform: translateY(-50%);
-    height: 1.25rem;
-    width: 1.25rem;
-    background-color: #f3f4f6;
-    border: 2px solid #e5e7eb;
-    border-radius: 4px;
-    transition: all 0.2s;
+    height: 1.8rem;
+    width: 1.8rem;
+    background: linear-gradient(135deg, #FFF0F5 0%, #F8E8FF 100%);
+    border: 3px solid #FFB6C1;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 182, 193, 0.2);
 }
 
 .checkbox-container:hover input ~ .checkmark {
-    background-color: #e5e7eb;
+    background: linear-gradient(135deg, #FFE5F1 0%, #F0E5FF 100%);
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 6px 20px rgba(255, 182, 193, 0.3);
 }
 
 .checkbox-container input:checked ~ .checkmark {
-    background-color: #d97706;
-    border-color: #d97706;
+    background: linear-gradient(45deg, #FF69B4, #FF1493);
+    border-color: #FF69B4;
+    box-shadow: 0 6px 20px rgba(255, 105, 180, 0.3);
 }
 
 .checkmark:after {
@@ -178,44 +243,49 @@
 }
 
 .checkbox-container .checkmark:after {
-    left: 4px;
-    top: 1px;
-    width: 4px;
-    height: 8px;
+    left: 6px;
+    top: 2px;
+    width: 6px;
+    height: 10px;
     border: solid white;
-    border-width: 0 2px 2px 0;
+    border-width: 0 3px 3px 0;
     transform: rotate(45deg);
 }
 
-/* Form Actions */
+/* Form Actions - Kawaii Edition */
 .form-actions {
     display: flex;
-    gap: 1rem;
-    justify-content: flex-end;
-    padding-top: 1rem;
-    border-top: 1px solid #e5e7eb;
-    margin-top: 1.5rem;
+    gap: 1.5rem;
+    justify-content: center;
+    padding-top: 2rem;
+    border-top: 3px solid #FFB6C1;
+    margin-top: 2rem;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 15px;
+    padding: 1.5rem;
 }
 
 /* ==========================================================================
-   Notification Component
+   Notification Component - Kawaii Edition 🔔
    ========================================================================== */
 
 .notification {
     position: fixed;
     top: 2rem;
     right: 2rem;
-    background: white;
-    border-radius: 8px;
-    padding: 1rem 1.5rem;
-    box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1);
-    border-left: 4px solid #16a34a;
+    background: linear-gradient(135deg, #FFF0F5 0%, #F8E8FF 100%);
+    border-radius: 20px;
+    padding: 1.5rem 2rem;
+    box-shadow: 0 15px 35px rgba(255, 105, 180, 0.3);
+    border: 3px solid #FFB6C1;
     display: none;
     align-items: center;
     gap: 1rem;
     z-index: 1001;
-    animation: slideIn 0.3s ease-out;
+    animation: slideIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     max-width: 400px;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
 }
 
 .notification.show {
@@ -223,75 +293,119 @@
 }
 
 .notification.success {
-    border-left-color: #16a34a;
+    border-color: #98FB98;
+    background: linear-gradient(135deg, #F0FFF0 0%, #E8F5E8 100%);
+}
+
+.notification.success::before {
+    content: '🌟';
+    font-size: 1.5rem;
 }
 
 .notification.error {
-    border-left-color: #dc2626;
+    border-color: #FFB6C1;
+    background: linear-gradient(135deg, #FFF0F5 0%, #FFE4E1 100%);
+}
+
+.notification.error::before {
+    content: '😔';
+    font-size: 1.5rem;
 }
 
 .notification.warning {
-    border-left-color: #f59e0b;
+    border-color: #FFE4B5;
+    background: linear-gradient(135deg, #FFF8DC 0%, #FFEFD5 100%);
+}
+
+.notification.warning::before {
+    content: '⚠️';
+    font-size: 1.5rem;
 }
 
 .notification.info {
-    border-left-color: #3b82f6;
+    border-color: #ADD8E6;
+    background: linear-gradient(135deg, #F0F8FF 0%, #E6F3FF 100%);
+}
+
+.notification.info::before {
+    content: '💡';
+    font-size: 1.5rem;
 }
 
 @keyframes slideIn {
     from {
         opacity: 0;
-        transform: translateX(100%);
+        transform: translateX(100%) rotate(10deg) scale(0.8);
     }
     to {
         opacity: 1;
-        transform: translateX(0);
+        transform: translateX(0) rotate(0deg) scale(1);
     }
 }
 
 .notification button {
-    background: none;
-    border: none;
-    font-size: 1.25rem;
+    background: linear-gradient(45deg, #FF69B4, #FF1493);
+    border: 2px solid #FFB6C1;
+    border-radius: 50%;
+    font-size: 1rem;
     cursor: pointer;
-    color: #6b7280;
+    color: white;
     padding: 0;
     margin: 0;
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3);
 }
 
 .notification button:hover {
-    color: #374151;
+    background: linear-gradient(45deg, #FF1493, #DC143C);
+    transform: scale(1.1) rotate(15deg);
+    box-shadow: 0 6px 20px rgba(255, 20, 147, 0.4);
+}
+
+.notification button::before {
+    content: '×';
+    font-weight: 800;
 }
 
 #notificationMessage {
     flex: 1;
-    font-weight: 500;
-    color: #374151;
+    font-weight: 700;
+    color: #8E44AD;
+    font-size: 1rem;
 }
 
 /* ==========================================================================
-   Loading Component
+   Loading Component - Kawaii Edition ⏳
    ========================================================================== */
 
 .loading {
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    color: #6b7280;
+    gap: 0.8rem;
+    color: #E91E63;
+    font-weight: 700;
+    font-family: 'Nunito', sans-serif;
+}
+
+.loading::before {
+    content: '✨ ';
+    font-size: 1.2rem;
+    animation: sparkle 1s ease-in-out infinite;
 }
 
 .spinner {
-    width: 1rem;
-    height: 1rem;
-    border: 2px solid #e5e7eb;
-    border-top: 2px solid #d97706;
+    width: 1.5rem;
+    height: 1.5rem;
+    border: 3px solid #FFE5F1;
+    border-top: 3px solid #FF69B4;
     border-radius: 50%;
     animation: spin 1s linear infinite;
+    box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3);
 }
 
 @keyframes spin {
@@ -300,41 +414,117 @@
 }
 
 /* ==========================================================================
-   Empty State Component
+   Empty State Component - Kawaii Edition 🌸
    ========================================================================== */
 
 .empty-state {
     text-align: center;
-    padding: 3rem 1rem;
-    color: #6b7280;
+    padding: 4rem 2rem;
+    color: #8E44AD;
     grid-column: 1 / -1;
+    background: linear-gradient(135deg, #FFF0F5 0%, #F8E8FF 100%);
+    border-radius: 25px;
+    border: 3px solid #FFB6C1;
+    box-shadow: 0 8px 25px rgba(255, 182, 193, 0.2);
 }
 
 .empty-state-icon {
-    font-size: 4rem;
-    margin-bottom: 1rem;
+    font-size: 5rem;
+    margin-bottom: 1.5rem;
+    animation: bounce 2s ease-in-out infinite;
 }
 
 .empty-state-title {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    color: #374151;
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+    color: #E91E63;
+    font-family: 'Nunito', sans-serif;
+    text-shadow: 1px 1px 2px rgba(233, 30, 99, 0.2);
 }
 
 .empty-state-description {
-    font-size: 1rem;
+    font-size: 1.2rem;
+    line-height: 1.6;
+    font-weight: 600;
     margin-bottom: 2rem;
 }
 
+.empty-state-description::before {
+    content: '🌸 ';
+    font-size: 1.1rem;
+}
+
 /* ==========================================================================
-   Responsive Design for Components
+   Additional Kawaii Elements 🎨
+   ========================================================================== */
+
+/* Kawaii tooltips */
+[title] {
+    position: relative;
+}
+
+[title]:hover::after {
+    content: attr(title);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(45deg, #FF69B4, #DDA0DD);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    white-space: nowrap;
+    z-index: 1000;
+    box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3);
+    animation: fadeIn 0.3s ease;
+}
+
+[title]:hover::before {
+    content: '';
+    position: absolute;
+    bottom: 90%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top-color: #FF69B4;
+    z-index: 1000;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateX(-50%) translateY(5px); }
+    to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+/* Kawaii focus effects */
+*:focus {
+    outline: 3px solid rgba(255, 105, 180, 0.5);
+    outline-offset: 2px;
+}
+
+/* ==========================================================================
+   Responsive Design for Components - Kawaii Edition 📱
    ========================================================================== */
 
 @media (max-width: 768px) {
     .modal-content {
         width: 95%;
         margin: 1rem;
+        border-radius: 20px;
+    }
+    
+    .modal-header {
+        padding: 1.5rem;
+    }
+    
+    .modal-header h1 {
+        font-size: 1.5rem;
+    }
+    
+    #productForm {
+        padding: 1.5rem;
     }
     
     .form-row {
@@ -344,11 +534,25 @@
     
     .form-actions {
         flex-direction: column;
+        gap: 1rem;
     }
     
     .notification {
         right: 1rem;
         left: 1rem;
         max-width: none;
+        padding: 1rem 1.5rem;
+    }
+    
+    .empty-state {
+        padding: 2rem 1rem;
+    }
+    
+    .empty-state-icon {
+        font-size: 3rem;
+    }
+    
+    .empty-state-title {
+        font-size: 1.5rem;
     }
 }
