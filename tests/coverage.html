@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📊 Análisis de Cobertura - Sistema Cafetería</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .header h1 {
+            color: #2c3e50;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .header p {
+            color: #7f8c8d;
+            font-size: 1.1rem;
+        }
+
+        .control-panel {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(45deg, #2196F3, #1976D2);
+        }
+
+        .btn-secondary:hover {
+            box-shadow: 0 5px 15px rgba(33, 150, 243, 0.3);
+        }
+
+        .results {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .console-output {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            max-height: 600px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            border: 2px solid #34495e;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .coverage-badge {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin: 10px;
+        }
+
+        .coverage-excellent {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .coverage-good {
+            background: #FF9800;
+            color: white;
+        }
+
+        .coverage-poor {
+            background: #F44336;
+            color: white;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .stat-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            border-left: 4px solid #3498db;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .stat-label {
+            color: #7f8c8d;
+            margin-top: 5px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 30px;
+            background: #ecf0f1;
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            transition: width 1s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 Análisis de Cobertura de Código</h1>
+            <p>Evaluación integral de la cobertura de pruebas del Sistema de Gestión de Cafetería</p>
+        </div>
+
+        <div class="control-panel">
+            <h2>🎮 Panel de Control</h2>
+            <p>Utiliza las siguientes herramientas para analizar la cobertura de código:</p>
+            
+            <button class="btn" onclick="runCoverageAnalysis()">
+                🔍 Ejecutar Análisis de Cobertura
+            </button>
+            
+            <button class="btn btn-secondary" onclick="runAllTests()">
+                🧪 Ejecutar Todas las Pruebas
+            </button>
+            
+            <button class="btn btn-secondary" onclick="clearOutput()">
+                🗑️ Limpiar Resultados
+            </button>
+
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>Analizando archivos de código...</p>
+            </div>
+        </div>
+
+        <div class="results">
+            <h2>📈 Resultados del Análisis</h2>
+            <div id="coverageStats" style="display: none;">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalFiles">0</div>
+                        <div class="stat-label">Archivos Analizados</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalFunctions">0</div>
+                        <div class="stat-label">Funciones Totales</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="testedFunctions">0</div>
+                        <div class="stat-label">Funciones Probadas</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="coveragePercentage">0%</div>
+                        <div class="stat-label">Cobertura Total</div>
+                    </div>
+                </div>
+                
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill" style="width: 0%;">
+                        <span id="progressText">0%</span>
+                    </div>
+                </div>
+
+                <div id="coverageBadge"></div>
+            </div>
+
+            <div class="console-output" id="console">
+                Presiona "Ejecutar Análisis de Cobertura" para comenzar el análisis...
+            </div>
+        </div>
+    </div>
+
+    <!-- Cargar framework de pruebas y analyzer -->
+    <script src="coverage-analyzer.js"></script>
+    
+    <script>
+        let consoleElement = document.getElementById('console');
+        let originalConsoleLog = console.log;
+        let originalConsoleWarn = console.warn;
+        let originalConsoleError = console.error;
+
+        // Redirigir console.log a la interfaz
+        console.log = function(...args) {
+            const message = args.map(arg => 
+                typeof arg === 'object' ? JSON.stringify(arg, null, 2) : String(arg)
+            ).join(' ');
+            consoleElement.textContent += message + '\n';
+            consoleElement.scrollTop = consoleElement.scrollHeight;
+            originalConsoleLog.apply(console, args);
+        };
+
+        console.warn = function(...args) {
+            const message = args.map(arg => String(arg)).join(' ');
+            consoleElement.textContent += '⚠️ ' + message + '\n';
+            consoleElement.scrollTop = consoleElement.scrollHeight;
+            originalConsoleWarn.apply(console, args);
+        };
+
+        console.error = function(...args) {
+            const message = args.map(arg => String(arg)).join(' ');
+            consoleElement.textContent += '❌ ' + message + '\n';
+            consoleElement.scrollTop = consoleElement.scrollHeight;
+            originalConsoleError.apply(console, args);
+        };
+
+        async function runCoverageAnalysis() {
+            const loading = document.getElementById('loading');
+            const statsDiv = document.getElementById('coverageStats');
+            
+            loading.style.display = 'block';
+            clearOutput();
+            
+            try {
+                console.log('🚀 Iniciando análisis de cobertura de código...\n');
+                
+                if (typeof analyzeCoverage === 'function') {
+                    const coverage = await analyzeCoverage();
+                    updateCoverageStats(coverage);
+                    statsDiv.style.display = 'block';
+                } else {
+                    console.error('❌ Error: La función analyzeCoverage no está disponible');
+                }
+            } catch (error) {
+                console.error('❌ Error ejecutando análisis:', error.message);
+            } finally {
+                loading.style.display = 'none';
+            }
+        }
+
+        function updateCoverageStats(coverage) {
+            if (!coverage) return;
+
+            document.getElementById('totalFiles').textContent = '9'; // Archivos principales
+            document.getElementById('totalFunctions').textContent = coverage.totalFunctions || '0';
+            document.getElementById('testedFunctions').textContent = coverage.testedFunctions || '0';
+            document.getElementById('coveragePercentage').textContent = (coverage.percentage || 0) + '%';
+
+            // Actualizar barra de progreso
+            const progressFill = document.getElementById('progressFill');
+            const progressText = document.getElementById('progressText');
+            const percentage = coverage.percentage || 0;
+            
+            progressFill.style.width = percentage + '%';
+            progressText.textContent = percentage + '%';
+
+            // Actualizar badge de cobertura
+            const badge = document.getElementById('coverageBadge');
+            let badgeClass, badgeText;
+            
+            if (percentage >= 85) {
+                badgeClass = 'coverage-excellent';
+                badgeText = '🎉 Excelente Cobertura';
+            } else if (percentage >= 70) {
+                badgeClass = 'coverage-good';
+                badgeText = '👍 Buena Cobertura';
+            } else {
+                badgeClass = 'coverage-poor';
+                badgeText = '⚠️ Cobertura Mejorable';
+            }
+            
+            badge.innerHTML = `<span class="coverage-badge ${badgeClass}">${badgeText}</span>`;
+        }
+
+        function runAllTests() {
+            consoleElement.textContent = 'Redirigiendo a la suite de pruebas completa...\n';
+            setTimeout(() => {
+                window.open('index.html', '_blank');
+            }, 1000);
+        }
+
+        function clearOutput() {
+            consoleElement.textContent = '';
+            document.getElementById('coverageStats').style.display = 'none';
+        }
+
+        // Cargar automáticamente al iniciar
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('📊 Analizador de Cobertura iniciado');
+            console.log('💡 Presiona el botón para ejecutar el análisis\n');
+        });
+    </script>
+</body>
+</html>
