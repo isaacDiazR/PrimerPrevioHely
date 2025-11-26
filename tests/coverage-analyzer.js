@@ -39,6 +39,10 @@ class CoverageAnalyzer {
             'tests/unit/whiteBoxTests.js',
             'tests/unit/blackBoxTests.js',
             'tests/unit/grayBoxTests.js',
+            'tests/unit/domUtilsTests.js',
+            'tests/unit/eventEmitterTests.js',
+            'tests/unit/storageManagerTests.js',
+            'tests/unit/errorHandlingTests.js',
             'tests/integration/integrationTests.js',
             'tests/e2e/e2eTests.js'
         ];
@@ -222,9 +226,9 @@ class CoverageAnalyzer {
         // Calcular score basado en pruebas existentes
         let score = 0;
         
-        // Unit tests
-        if (unitTestCount >= 3) score += factors.unitTests;
-        else score += (unitTestCount / 3) * factors.unitTests;
+        // Unit tests - ahora tenemos 7 archivos
+        if (unitTestCount >= 7) score += factors.unitTests;
+        else score += (unitTestCount / 7) * factors.unitTests;
 
         // Integration tests
         if (integrationTestCount >= 1) score += factors.integrationTests;
@@ -235,7 +239,8 @@ class CoverageAnalyzer {
         // Análisis de cobertura específica
         const coverageKeywords = [
             'Product', 'Service', 'Controller', 'View', 'Validation',
-            'Storage', 'Event', 'DOM', 'CRUD', 'Filter', 'Search'
+            'Storage', 'Event', 'DOM', 'CRUD', 'Filter', 'Search',
+            'Error', 'Edge', 'Security', 'XSS', 'Emitter', 'Utils'
         ];
 
         let keywordCoverage = 0;
@@ -292,6 +297,10 @@ class CoverageAnalyzer {
             'Unit Tests (Caja Blanca)': this.testFiles.filter(f => f.path.includes('whiteBox')).length,
             'Unit Tests (Caja Negra)': this.testFiles.filter(f => f.path.includes('blackBox')).length,
             'Unit Tests (Caja Gris)': this.testFiles.filter(f => f.path.includes('grayBox')).length,
+            'Unit Tests (DOMUtils)': this.testFiles.filter(f => f.path.includes('domUtils')).length,
+            'Unit Tests (EventEmitter)': this.testFiles.filter(f => f.path.includes('eventEmitter')).length,
+            'Unit Tests (StorageManager)': this.testFiles.filter(f => f.path.includes('storageManager')).length,
+            'Unit Tests (Error Handling)': this.testFiles.filter(f => f.path.includes('errorHandling')).length,
             'Integration Tests': this.testFiles.filter(f => f.path.includes('integration')).length,
             'E2E Tests': this.testFiles.filter(f => f.path.includes('e2e')).length
         };
@@ -306,13 +315,17 @@ class CoverageAnalyzer {
             console.log('   ⚠️ Cobertura baja - Agregar más pruebas unitarias');
         } else if (this.coverage.percentage < 85) {
             console.log('   📈 Cobertura buena - Considerar agregar pruebas de edge cases');
-        } else {
+        } else if (this.coverage.percentage < 95) {
             console.log('   🎉 Excelente cobertura de pruebas');
+            console.log('   💪 Considerar agregar pruebas de performance y accessibility');
+        } else {
+            console.log('   🌟 Cobertura excepcional - ¡Proyecto muy bien testeado!');
         }
 
         console.log('   📊 Para cobertura precisa, usar herramientas como Istanbul/NYC');
         console.log('   🔍 Considerar agregar pruebas de rendimiento');
         console.log('   🛡️ Verificar cobertura de casos de error');
+        console.log('   ♿ Considerar agregar pruebas de accesibilidad');
 
         return this.coverage;
     }

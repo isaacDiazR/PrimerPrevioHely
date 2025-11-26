@@ -19,10 +19,12 @@
     "start": "npx http-server . -p 8080 -o",
     "dev": "npx live-server --port=8080 --open=/index.html",
     "build": "echo 'Proyecto listo para producción'",
-    "test": "echo 'No hay tests configurados aún'"
+    "test": "node tests/cli-runner.js",
+    "test:ci": "node tests/cli-runner.js"
   },
   "devDependencies": {
     "http-server": "^14.1.0",
+    "jsdom": "^22.1.0",
     "live-server": "^1.2.2"
   },
   "repository": {

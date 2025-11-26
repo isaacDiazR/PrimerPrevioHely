@@ -34,3 +34,11 @@ Thumbs.db
 
 # Archive folder (optional - uncomment if you want to exclude from git)
 # archive/
+# Docker
+*.tar.gz
+docker-compose.override.yml
+
+# SSH Keys
+*.pem
+*.key
+id_rsa*

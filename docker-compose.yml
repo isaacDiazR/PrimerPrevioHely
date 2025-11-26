@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  # Tu proyecto existente (CapRover u otro)
+  # Descomenta y ajusta según tu proyecto existente
+  # proyecto-existente:
+  #   image: tu-imagen-existente
+  #   ports:
+  #     - "3000:3000"
+  #   networks:
+  #     - app-network
+
+  # Este nuevo proyecto - Cafetería
+  cafeteria:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: cafeteria-app
+    ports:
+      - "8080:80"  # Puerto 8080 para acceder a la cafetería
+    restart: unless-stopped
+    networks:
+      - app-network
+    labels:
+      - "com.centurylinklabs.watchtower.enable=true"
+
+  # Reverse Proxy opcional con Nginx (para manejar múltiples proyectos)
+  nginx-proxy:
+    image: nginx:alpine
+    container_name: nginx-proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./proxy-config/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./proxy-config/conf.d:/etc/nginx/conf.d:ro
+    depends_on:
+      - cafeteria
+    networks:
+      - app-network
+    restart: unless-stopped
+
+networks:
+  app-network:
+    driver: bridge

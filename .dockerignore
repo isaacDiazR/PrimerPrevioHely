@@ -1,0 +1,14 @@
+node_modules
+npm-debug.log
+.git
+.gitignore
+.github
+README.md
+REFACTORING.md
+COVERAGE_IMPROVEMENTS.md
+.vscode
+.DS_Store
+*.log
+.env
+.env.local
+tests/coverage.html

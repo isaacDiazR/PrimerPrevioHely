@@ -148,6 +148,17 @@ class TestRunner {
 
         // Update UI if available
         this.updateUI();
+
+        // Exit with error code if running in Node.js (CI mode)
+        if (typeof process !== 'undefined' && process.exit) {
+            const exitCode = this.results.failedTests > 0 ? 1 : 0;
+            if (exitCode === 1) {
+                console.error('\n❌ Tests failed - exiting with code 1');
+            } else {
+                console.log('\n✅ All tests passed - exiting with code 0');
+            }
+            setTimeout(() => process.exit(exitCode), 100);
+        }
     }
 
     /**

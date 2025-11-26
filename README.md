@@ -253,6 +253,45 @@ assets/js/
 
 ---
 
+## 🚀 Deployment & CI/CD
+
+Este proyecto incluye configuración completa para deployment con Docker y CI/CD con GitHub Actions.
+
+### 🐳 Docker
+```bash
+# Iniciar con Docker Compose
+docker-compose up -d cafeteria
+
+# O construir manualmente
+docker build -t cafeteria-app .
+docker run -d -p 8080:80 cafeteria-app
+```
+
+### ⚙️ CI/CD Automático
+- ✅ **Pruebas automáticas** en cada push
+- ✅ **Build de Docker** solo si las pruebas pasan
+- ✅ **Deploy automático** al servidor
+- ✅ **No deploy si hay errores**
+
+### 📚 Documentación de Deployment
+- **[QUICKSTART.md](QUICKSTART.md)** - Inicio rápido
+- **[DEPLOYMENT.md](DEPLOYMENT.md)** - Guía completa de despliegue
+- **[GITHUB_SECRETS_SETUP.md](GITHUB_SECRETS_SETUP.md)** - Configurar CI/CD
+- **[PROJECT_SUMMARY.md](PROJECT_SUMMARY.md)** - Resumen del proyecto
+
+### 🎯 Deployment Rápido
+```bash
+# Windows
+.\deploy.ps1 setup
+
+# Linux/Mac
+./deploy.sh setup
+```
+
+**Ver documentación completa en [DEPLOYMENT.md](DEPLOYMENT.md)**
+
+---
+
 **¡Hecho con ❤️ para la comunidad de desarrollo y pequeños negocios!**
 CafeteriaAPI.products.delete(id)         // Eliminar producto
 

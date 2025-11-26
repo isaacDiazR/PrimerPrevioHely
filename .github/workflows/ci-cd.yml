@@ -1,0 +1,158 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  # Job 1: Run Tests
+  test:
+    name: Run Tests
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Run tests
+      run: npm test
+      
+    - name: Upload test results
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: test-results
+        path: tests/coverage.html
+        retention-days: 30
+
+  # Job 2: Build Docker Image
+  build:
+    name: Build Docker Image
+    runs-on: ubuntu-latest
+    needs: test  # Solo se ejecuta si las pruebas pasan
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+      
+    - name: Login to Docker Hub (Optional)
+      if: github.event_name == 'push'
+      uses: docker/login-action@v3
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+      
+    - name: Build Docker image
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        push: false  # Cambiar a true si quieres subir a Docker Hub
+        tags: cafeteria-app:latest
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
+        
+    - name: Save Docker image
+      run: docker save cafeteria-app:latest | gzip > cafeteria-app.tar.gz
+      
+    - name: Upload Docker image artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: docker-image
+        path: cafeteria-app.tar.gz
+        retention-days: 7
+
+  # Job 3: Deploy to Server
+  deploy:
+    name: Deploy to Server
+    runs-on: ubuntu-latest
+    needs: build  # Solo se ejecuta si el build pasa
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Download Docker image
+      uses: actions/download-artifact@v4
+      with:
+        name: docker-image
+        
+    - name: Deploy to server via SSH
+      uses: appleboy/ssh-action@v1.0.0
+      with:
+        host: ${{ secrets.SERVER_HOST }}
+        username: ${{ secrets.SERVER_USER }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        port: ${{ secrets.SERVER_PORT || 22 }}
+        script: |
+          # Crear directorio si no existe
+          mkdir -p ~/cafeteria-app
+          cd ~/cafeteria-app
+          
+          # Backup del contenedor anterior (opcional)
+          docker ps -a | grep cafeteria-app && docker stop cafeteria-app || true
+          docker ps -a | grep cafeteria-app && docker rm cafeteria-app || true
+          
+          # Descargar archivos necesarios
+          echo "Deploying new version..."
+          
+    - name: Copy files to server
+      uses: appleboy/scp-action@v0.1.4
+      with:
+        host: ${{ secrets.SERVER_HOST }}
+        username: ${{ secrets.SERVER_USER }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        port: ${{ secrets.SERVER_PORT || 22 }}
+        source: "docker-compose.yml,Dockerfile,nginx.conf,.dockerignore"
+        target: "~/cafeteria-app"
+        
+    - name: Start Docker container
+      uses: appleboy/ssh-action@v1.0.0
+      with:
+        host: ${{ secrets.SERVER_HOST }}
+        username: ${{ secrets.SERVER_USER }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        port: ${{ secrets.SERVER_PORT || 22 }}
+        script: |
+          cd ~/cafeteria-app
+          
+          # Iniciar el contenedor
+          docker-compose up -d cafeteria
+          
+          # Verificar estado
+          docker ps | grep cafeteria-app
+          
+          echo "✅ Deployment completed successfully!"
+
+  # Job 4: Notify (Optional)
+  notify:
+    name: Send Notification
+    runs-on: ubuntu-latest
+    needs: [test, build, deploy]
+    if: always()
+    
+    steps:
+    - name: Send success notification
+      if: ${{ needs.deploy.result == 'success' }}
+      run: |
+        echo "🎉 Deployment successful!"
+        
+    - name: Send failure notification
+      if: ${{ needs.test.result == 'failure' || needs.build.result == 'failure' || needs.deploy.result == 'failure' }}
+      run: |
+        echo "❌ Pipeline failed!"

@@ -442,10 +442,14 @@
             globalTestRunner.addSuite('White Box Tests', 'unit/whiteBoxTests.js', 'unit');
             globalTestRunner.addSuite('Black Box Tests', 'unit/blackBoxTests.js', 'unit');
             globalTestRunner.addSuite('Gray Box Tests', 'unit/grayBoxTests.js', 'unit');
+            globalTestRunner.addSuite('DOMUtils Tests', 'unit/domUtilsTests.js', 'unit');
+            globalTestRunner.addSuite('EventEmitter Tests', 'unit/eventEmitterTests.js', 'unit');
+            globalTestRunner.addSuite('StorageManager Tests', 'unit/storageManagerTests.js', 'unit');
+            globalTestRunner.addSuite('Error Handling Tests', 'unit/errorHandlingTests.js', 'unit');
             globalTestRunner.addSuite('Integration Tests', 'integration/integrationTests.js', 'integration');
             globalTestRunner.addSuite('End-to-End Tests', 'e2e/e2eTests.js', 'e2e');
 
-            updateProgress(0, 5, 'Initializing comprehensive test suite...');
+            updateProgress(0, 9, 'Initializing comprehensive test suite...');
             
             try {
                 await globalTestRunner.runAllTests();
@@ -468,8 +472,12 @@
             globalTestRunner.addSuite('White Box Tests', 'unit/whiteBoxTests.js', 'unit');
             globalTestRunner.addSuite('Black Box Tests', 'unit/blackBoxTests.js', 'unit');
             globalTestRunner.addSuite('Gray Box Tests', 'unit/grayBoxTests.js', 'unit');
+            globalTestRunner.addSuite('DOMUtils Tests', 'unit/domUtilsTests.js', 'unit');
+            globalTestRunner.addSuite('EventEmitter Tests', 'unit/eventEmitterTests.js', 'unit');
+            globalTestRunner.addSuite('StorageManager Tests', 'unit/storageManagerTests.js', 'unit');
+            globalTestRunner.addSuite('Error Handling Tests', 'unit/errorHandlingTests.js', 'unit');
 
-            updateProgress(0, 3, 'Running unit tests...');
+            updateProgress(0, 7, 'Running unit tests...');
             
             try {
                 await globalTestRunner.runAllTests();
