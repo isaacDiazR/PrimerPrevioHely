@@ -135,10 +135,10 @@ jobs:
           cd ~/cafeteria-app
           
           # Iniciar el contenedor
-          docker compose up -d cafeteria
+          docker compose up -d
           
           # Verificar estado
-          docker ps | grep cafeteria-app
+          docker ps | grep cafeteria
           
           echo "✅ Deployment completed successfully!"
 
