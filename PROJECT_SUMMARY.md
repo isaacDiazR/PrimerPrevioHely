@@ -1,4 +1,4 @@
-# 📊 Resumen del Proyecto - CI/CD Configurado
+ow# 📊 Resumen del Proyecto - CI/CD Configurado
 
 ## ✅ Configuración Completada
 
