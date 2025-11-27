@@ -119,8 +119,10 @@ jobs:
         username: ${{ secrets.SERVER_USER }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         port: ${{ secrets.SERVER_PORT || 22 }}
-        source: "docker-compose.yml,Dockerfile,nginx.conf,.dockerignore"
+        source: "."
         target: "~/cafeteria-app"
+        rm: true
+        strip_components: 1
         
     - name: Start Docker container
       uses: appleboy/ssh-action@v1.0.0
@@ -133,7 +135,7 @@ jobs:
           cd ~/cafeteria-app
           
           # Iniciar el contenedor
-          docker-compose up -d cafeteria
+          docker compose up -d cafeteria
           
           # Verificar estado
           docker ps | grep cafeteria-app
