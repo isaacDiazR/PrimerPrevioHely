@@ -134,8 +134,14 @@ jobs:
         script: |
           cd ~/cafeteria-app
           
-          # Iniciar el contenedor
-          docker compose up -d
+          # Detener y eliminar contenedores antiguos
+          docker compose down
+          
+          # Eliminar imagen antigua para forzar rebuild
+          docker rmi cafeteria-app-cafeteria || true
+          
+          # Reconstruir y levantar
+          docker compose up -d --build --force-recreate
           
           # Verificar estado
           docker ps | grep cafeteria
