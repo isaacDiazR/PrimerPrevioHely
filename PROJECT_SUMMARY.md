@@ -30,7 +30,7 @@ ow# 📊 Resumen del Proyecto - CI/CD Configurado
 └──────┬──────────┘
        │
        ▼
-    ❌ Falla? ────> STOP (No Deploy)
+    ❌ Fallaa? ────> STOP (No Deploy)
        │
        ✅ Pasa?
        │
